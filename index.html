@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non ho niente da fare</title>
+    <style>
+        /* Palette Rosa */
+        
+         :root {
+            --bg-rosa-chiaro: #ffe5ec;
+            --rosa-medio: #ffb3c1;
+            --rosa-acceso: #ff758f;
+            --rosa-scuro: #c9184a;
+            --testo-colore: #590d22;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-rosa-chiaro);
+            color: var(--testo-colore);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        /* Box Standard */
+        
+        .box-domanda {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(201, 24, 74, 0.15);
+            border: 3px solid var(--rosa-medio);
+            max-width: 450px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .bottoni-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        button {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-si {
+            background-color: var(--rosa-acceso);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 117, 143, 0.4);
+        }
+        
+        .btn-si:hover {
+            background-color: var(--rosa-scuro);
+            transform: scale(1.05);
+        }
+        
+        .btn-no {
+            background-color: var(--rosa-medio);
+            color: var(--testo-colore);
+        }
+        
+        .btn-no:hover {
+            background-color: var(--rosa-acceso);
+            color: white;
+            transform: scale(1.05);
+        }
+        /* Scritta Intermedia "Allora adesso tranquilla" */
+        
+        .testo-intermedio {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--rosa-scuro);
+            animation: fadeInOut 2.5s ease-in-out forwards;
+        }
+        /* Pagina delle Foto */
+        
+        .contenuto-si {
+            max-width: 900px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        
+        .contenuto-si h1 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--rosa-scuro);
+        }
+        
+        .grid-foto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .grid-foto img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-foto img:hover {
+            transform: scale(1.04) rotate(1deg);
+        }
+        /* Classi di utility per nascondere gli elementi */
+        
+        .hidden {
+            display: none !important;
+        }
+        /* ANIMAZIONI */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box-iniziale" class="box-domanda">
+        <h1>Alessia, sei ancora scazzata? </h1>
+        <div class="bottoni-container">
+            <button class="btn-si" onclick="gestisciRisposta('si')">Sì</button>
+            <button class="btn-no" onclick="gestisciRisposta('no')">No</button>
+        </div>
+    </div>
+
+    <div id="animazione-tranquilla" class="testo-intermedio hidden">
+        Allora adesso tranquilla...
+    </div>
+
+    <div id="pagina-si" class="contenuto-si hidden">
+        <h1>... e goditi queste foto carine</h1>
+        <div class="grid-foto">
+            <img src="immagine1.jpg" alt="Foto 1">
+            <img src="immagine2.jpg" alt="Foto 2">
+            <img src="immagine3.jpg" alt="Foto 3">
+            <img src="immagine4.jpg" alt="Foto 4">
+        </div>
+    </div>
+
+    <div id="pagina-no" class="box-domanda hidden">
+        <h1>Meno male! 🥰</h1>
+        <p style="font-size: 1.2rem; margin-top: 10px;">Allora il mio piano ha funzionato. Ti meriti un bacio!</p>
+    </div>
+
+    <script>
+        function gestisciRisposta(scelta) {
+            // Nascondiamo subito il box iniziale con la domanda
+            document.getElementById('box-iniziale').classList.add('hidden');
+
+            if (scelta === 'si') {
+                // 1. Mostriamo la scritta "Allora adesso tranquilla..."
+                const testoIntermedio = document.getElementById('animazione-tranquilla');
+                testoIntermedio.classList.remove('hidden');
+
+                // 2. Aspettiamo 2500 millisecondi (2.5 secondi, il tempo dell'animazione)
+                setTimeout(() => {
+                    // Nascondiamo la scritta intermedia
+                    testoIntermedio.classList.add('hidden');
+
+                    // Mostriamo la pagina finale con le foto
+                    const paginaFoto = document.getElementById('pagina-si');
+                    paginaFoto.classList.remove('hidden');
+
+                    // Sistemiamo il layout del body per scorrere bene la griglia di foto
+                    document.body.style.alignItems = 'flex-start';
+                    document.body.style.paddingTop = '60px';
+                }, 2500);
+
+            } else {
+                // Se clicca No, va direttamente alla schermata dolce
+                document.getElementById('pagina-no').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
