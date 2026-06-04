@@ -3,11 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Non ho niente da fare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Per Alessia ❤️</title>
     <style>
-        /* Palette Rosa */
-        
          :root {
             --bg-rosa-chiaro: #ffe5ec;
             --rosa-medio: #ffb3c1;
@@ -23,7 +21,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-rosa-chiaro);
             color: var(--testo-colore);
             display: flex;
@@ -31,108 +29,120 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
-        /* Box Standard */
+        /* Box Principale Mobile */
         
         .box-domanda {
             background: white;
-            padding: 40px 30px;
+            padding: 35px 25px;
             border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(201, 24, 74, 0.15);
+            box-shadow: 0 10px 25px rgba(201, 24, 74, 0.12);
             border: 3px solid var(--rosa-medio);
-            max-width: 450px;
             width: 100%;
-            animation: fadeIn 0.5s ease-in-out forwards;
+            max-width: 400px;
+            animation: fadeIn 0.4s ease-out forwards;
         }
         
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
             font-weight: 700;
+            line-height: 1.3;
         }
+        
+        .sottotitolo-dolce {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            display: block;
+            opacity: 0.9;
+        }
+        /* Bottoni Verticali per Mobile */
         
         .bottoni-container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
         }
         
         button {
-            padding: 12px 35px;
-            font-size: 1.1rem;
+            width: 100%;
+            padding: 18px;
+            /* Tasto grande per il touch */
+            font-size: 1.2rem;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        button:active {
+            transform: scale(0.97);
         }
         
         .btn-si {
             background-color: var(--rosa-acceso);
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 117, 143, 0.4);
-        }
-        
-        .btn-si:hover {
-            background-color: var(--rosa-scuro);
-            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 117, 143, 0.3);
         }
         
         .btn-no {
             background-color: var(--rosa-medio);
             color: var(--testo-colore);
         }
-        
-        .btn-no:hover {
-            background-color: var(--rosa-acceso);
-            color: white;
-            transform: scale(1.05);
-        }
-        /* Scritta Intermedia "Allora adesso tranquilla" */
+        /* Animazione Intermedia */
         
         .testo-intermedio {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: bold;
             color: var(--rosa-scuro);
+            padding: 0 20px;
+            line-height: 1.3;
             animation: fadeInOut 2.5s ease-in-out forwards;
         }
-        /* Pagina delle Foto */
+        /* Schermata Singola Foto */
         
         .contenuto-si {
-            max-width: 900px;
             width: 100%;
-            animation: fadeIn 0.8s ease-in-out forwards;
+            max-width: 450px;
+            animation: fadeIn 0.6s ease-out forwards;
         }
         
         .contenuto-si h1 {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
+            font-size: 1.9rem;
             color: var(--rosa-scuro);
+            margin-bottom: 10px;
         }
         
-        .grid-foto {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        .testo-scuse {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        /* Container Foto Singola Grande */
+        
+        .singola-foto-container {
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .grid-foto img {
+        .singola-foto-container img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            height: auto;
+            max-height: 70vh;
+            /* Non supera il 70% dell'altezza dello schermo */
+            object-fit: contain;
+            /* Mantiene le proporzioni senza tagliare */
             border-radius: 20px;
-            border: 5px solid white;
+            border: 6px solid white;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
-        
-        .grid-foto img:hover {
-            transform: scale(1.04) rotate(1deg);
-        }
-        /* Classi di utility per nascondere gli elementi */
         
         .hidden {
             display: none !important;
@@ -142,30 +152,30 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: scale(0.95);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
         
         @keyframes fadeInOut {
             0% {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: scale(0.9);
             }
-            20% {
+            15% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1);
             }
-            80% {
+            85% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: scale(0.9);
             }
         }
     </style>
@@ -173,59 +183,61 @@
 
 <body>
 
+    <!-- 1. DOMANDA PRINCIPALE -->
     <div id="box-iniziale" class="box-domanda">
-        <h1>Alessia, sei ancora scazzata? </h1>
+        <h1>Alessia, mi perdoni? 🥺</h1>
+
+
         <div class="bottoni-container">
-            <button class="btn-si" onclick="gestisciRisposta('si')">Sì</button>
-            <button class="btn-no" onclick="gestisciRisposta('no')">No</button>
+            <button class="btn-si" onclick="gestisciRisposta('si')">Sì, ma portami il McFlurry</button>
+            <button class="btn-no" onclick="gestisciRisposta('no')">Non lo so...</button>
         </div>
     </div>
 
+    <!-- 2. TRANSIZIONE INTERMEDIA -->
     <div id="animazione-tranquilla" class="testo-intermedio hidden">
-        Allora adesso tranquilla...
+        Top allora passo al MC.
     </div>
 
+    <!-- 3. SCHERMATA SINGOLA FOTO -->
     <div id="pagina-si" class="contenuto-si hidden">
-        <h1>... e goditi queste foto carine</h1>
-        <div class="grid-foto">
-            <img src="immagine1.jpg" alt="Foto 1">
-            <img src="immagine2.jpg" alt="Foto 2">
-            <img src="immagine3.jpg" alt="Foto 3">
-            <img src="immagine4.jpg" alt="Foto 4">
+        <h1>Giuro che non rispondero mai più a nessun messaggio</h1>
+        <p class="testo-scuse">
+            top mentre mi aspetti ecco una foto di un mcFlurry.
+        </p>
+        <div class="singola-foto-container">
+            <!-- Metterai qui la tua immagine preferita rinominata immagine1.jpeg -->
+            <img src="immagine5.jpg" alt="mcflurry">
         </div>
     </div>
 
+    <!-- 4. SCHERMATA SE DICE "NON LO SO" -->
     <div id="pagina-no" class="box-domanda hidden">
-        <h1>Meno male! 🥰</h1>
-        <p style="font-size: 1.2rem; margin-top: 10px;">Allora il mio piano ha funzionato. Ti meriti un abbraccio!</p>
+        <h1>Eddai vengo in camper a portati un mcflurry</h1>
+        <p style="font-size: 1.1rem; margin-top: 15px; line-height: 1.5;"> </p>
     </div>
 
     <script>
         function gestisciRisposta(scelta) {
-            // Nascondiamo subito il box iniziale con la domanda
             document.getElementById('box-iniziale').classList.add('hidden');
 
             if (scelta === 'si') {
-                // 1. Mostriamo la scritta "Allora adesso tranquilla..."
                 const testoIntermedio = document.getElementById('animazione-tranquilla');
                 testoIntermedio.classList.remove('hidden');
 
-                // 2. Aspettiamo 2500 millisecondi (2.5 secondi, il tempo dell'animazione)
                 setTimeout(() => {
-                    // Nascondiamo la scritta intermedia
                     testoIntermedio.classList.add('hidden');
 
-                    // Mostriamo la pagina finale con le foto
                     const paginaFoto = document.getElementById('pagina-si');
                     paginaFoto.classList.remove('hidden');
 
-                    // Sistemiamo il layout del body per scorrere bene la griglia di foto
+                    // Ottimizzazione layout per scorrere la foto singola
                     document.body.style.alignItems = 'flex-start';
-                    document.body.style.paddingTop = '60px';
+                    document.body.style.paddingTop = '40px';
+                    document.body.style.paddingBottom = '40px';
                 }, 2500);
 
             } else {
-                // Se clicca No, va direttamente alla schermata dolce
                 document.getElementById('pagina-no').classList.remove('hidden');
             }
         }
